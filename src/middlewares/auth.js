@@ -12,7 +12,6 @@ const authAndRoleMiddleware = (allowedRoles) => {
             }
 
             const token = authHeader.split(' ')[1];
-
             const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY); 
 
             // Check if user's role is in the allowed roles

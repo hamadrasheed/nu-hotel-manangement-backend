@@ -11,7 +11,7 @@ const bookings = require('./bookings');
 router.use('/user', auth);
 router.use('/rooms', rooms);
 router.use('/images', images);
-router.use('/bookings', authAndRoleMiddleware(['admin', 'owner']), bookings);
+router.use('/bookings', authAndRoleMiddleware(['admin', 'guest']), bookings);
 
 router.get('/', function (req, res, next) {
   res.send({ title: 'Bellona' });
