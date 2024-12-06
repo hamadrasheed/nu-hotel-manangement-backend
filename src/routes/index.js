@@ -6,10 +6,12 @@ const authAndRoleMiddleware = require('../middlewares/auth');
 const auth = require('./auth');
 const rooms = require('./rooms');
 const images = require('./images');
+const bookings = require('./bookings');
 
 router.use('/user', auth);
 router.use('/rooms', rooms);
 router.use('/images', images);
+router.use('/bookings', authAndRoleMiddleware(['admin', 'owner']), bookings);
 
 router.get('/', function (req, res, next) {
   res.send({ title: 'Bellona' });

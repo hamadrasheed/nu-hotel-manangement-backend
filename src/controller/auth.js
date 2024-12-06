@@ -20,6 +20,8 @@ module.exports = {
                 roleSlug,
             } = data;
 
+            console.log('data',data);
+
             const doesEmailExits = helper.shallowCopy(await db.users.findOne(
                 {
                     
@@ -91,7 +93,7 @@ module.exports = {
                         as: 'role',
                         attributes: ['id', 'name', 'slug']
                     },
-                    attributes: ['id', 'firstName', 'lastName', 'password']
+                    attributes: ['id', 'firstName', 'lastName', 'email', 'password']
                 }
             ));
             

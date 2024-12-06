@@ -102,7 +102,7 @@ module.exports = {
         price: '$210',
         distance: '8 miles from city center',
         rating: '8.8 Excellent',
-        image: 'https://via.placeholder.com/150',
+        image: 'p3.jpg',
         freeWifi: false,
         freeCancellation: false,
         breakfastIncluded: true,
