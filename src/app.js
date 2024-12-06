@@ -7,6 +7,7 @@ const http = require('http');
 const dotenv = require('dotenv');
 const db = require('./database/db.js');
 const indexRouter = require('./routes/');
+const path = require('path');
 
 dotenv.config({ path: '.env' });
 
@@ -27,6 +28,8 @@ app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('port', process.env.PORT || 8500);
 
