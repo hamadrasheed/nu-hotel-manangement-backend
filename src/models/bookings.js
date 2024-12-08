@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
+      statusId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
       checkInDate: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -74,6 +78,11 @@ module.exports = (sequelize, DataTypes) => {
     Booking.belongsTo(models.rooms, {
       foreignKey: 'roomId',
       as: 'room',
+    });
+
+    Booking.belongsTo(models.bookingStatus, {
+      foreignKey: 'statusId',
+      as: 'bookingStatus',
     });
   };
 

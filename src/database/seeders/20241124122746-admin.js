@@ -9,7 +9,7 @@ module.exports = {
       {
         firstName: 'Super',
         LastName: 'Admin',
-        email: 'admin@bookMySpot.com',
+        email: 'admin@nu.com',
         password: admin1Password,
         roleId: 1,
       }

@@ -38,6 +38,23 @@ router.post('/check-availability', async (req, res) => {
     }
 });
 
+router.put('/status', async (req, res) => {
+    try {
+
+        const result = await bookingController.updateStatus(req.body);
+
+        res.status(200).send({
+            message: "Success",
+            data: result,
+        });
+
+    } catch (err) {
+        res.status(406).send({
+            message: err?.message
+        })
+    }
+});
+
 router.post('/', async (req, res) => {
     try {
 
@@ -49,6 +66,23 @@ router.post('/', async (req, res) => {
                 data: result,
             });
         }, 2000);
+
+    } catch (err) {
+        res.status(406).send({
+            message: err?.message
+        })
+    }
+});
+
+router.get('/staff', async (req, res) => {
+    try {
+
+        const result = await bookingController.getForStaff(req.query);
+
+        res.status(200).send({
+            message: "Success",
+            data: result,
+        });
 
     } catch (err) {
         res.status(406).send({

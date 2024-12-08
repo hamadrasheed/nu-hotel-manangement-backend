@@ -8,6 +8,7 @@ const dotenv = require('dotenv');
 const db = require('./database/db.js');
 const indexRouter = require('./routes/');
 const path = require('path');
+const bookingStatusUpdater = require('./crone/bookingStatusUpdater');
 
 dotenv.config({ path: '.env' });
 
@@ -24,6 +25,7 @@ db.authenticate()
 // Configurations
 app.use(cors());
 app.use(helmet());
+app.disable('etag');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -35,14 +37,8 @@ app.set('port', process.env.PORT || 8500);
 
 app.use('/api', indexRouter);
 
-// error handler
-// app.use(function(err, req, res, next) {
-//   res.status(err?.status || 500).send({
-//     message: err?.message || 'Something went wrong!' 
-//   })
-// });
+bookingStatusUpdater();
 
-const server = http.createServer(app);
 
 app.listen(app.get('port'), () => {
     console.log('App is running at http://localhost:%d in %s mode', app.get('port'), app.get('env'));

@@ -131,5 +131,49 @@ module.exports = {
             throw error;   
         }
 
+    },
+
+    async deactivate(data) {
+
+        try {
+            
+            const {
+                userId,
+                password
+            } = data;
+    
+            const isUserExist = helper.shallowCopy(await db.users.findOne(
+                {
+                    
+                    where: {
+                        id: userId,
+                        deletedAt: null
+                    },
+                    attributes: ['id', 'firstName', 'lastName', 'email', 'password']
+                }
+            ));
+            
+            if (!isUserExist) {
+                throw Error('User not found!');
+            }
+    
+            await db.users.update(
+                {
+                    deletedAt: new Date(),
+                    updatedBy: userId,
+                },
+                {
+                    where: {
+                        id: userId
+                    }
+                }
+            );
+
+            return true;
+
+        } catch (error) {
+            throw error;   
+        }
+
     }
 }
